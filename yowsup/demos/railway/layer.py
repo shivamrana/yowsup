@@ -9,6 +9,7 @@ class RailwayLayer(YowInterfaceLayer):
         if messageProtocolEntity.getType() == 'text':
             text = messageProtocolEntity.getBody().lower()
             if text[:3] == "pnr":
+                print("Echoing PNR to %s" % (messageProtocolEntity.getFrom(False)))
                 messageProtocolEntity.setBody(pnr_worker.get_pnr(text[4:]))
 
         self.toLower(messageProtocolEntity.forward(messageProtocolEntity.getFrom()))
