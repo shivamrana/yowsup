@@ -1,5 +1,5 @@
 from yowsup.stacks import YowStack
-from .layer import RailwayLayer
+from .layer import CustomLayer
 from yowsup.layers import YowLayerEvent
 from yowsup.layers.auth                        import YowCryptLayer, YowAuthenticationProtocolLayer, AuthError
 from yowsup.layers.coder                       import YowCoderLayer
@@ -14,12 +14,12 @@ from yowsup.layers.protocol_iq                 import YowIqProtocolLayer
 from yowsup.layers.protocol_calls              import YowCallsProtocolLayer
 from yowsup.layers                             import YowParallelLayer
 
-class YowsupRailwayStack(object):
+class YowsupCustomStack(object):
     def __init__(self, credentials, encryptionEnabled = False):
         if encryptionEnabled:
             from yowsup.layers.axolotl                     import YowAxolotlLayer
             layers = (
-                RailwayLayer,
+                CustomLayer,
                 YowParallelLayer([YowAuthenticationProtocolLayer, YowMessagesProtocolLayer, YowReceiptProtocolLayer, YowAckProtocolLayer, YowMediaProtocolLayer, YowIqProtocolLayer, YowCallsProtocolLayer]),
                 YowAxolotlLayer,
                 YowLoggerLayer,
@@ -30,7 +30,7 @@ class YowsupRailwayStack(object):
             )
         else:
             layers = (
-                RailwayLayer,
+                CustomLayer,
                 YowParallelLayer([YowAuthenticationProtocolLayer, YowMessagesProtocolLayer, YowReceiptProtocolLayer, YowAckProtocolLayer, YowMediaProtocolLayer, YowIqProtocolLayer, YowCallsProtocolLayer]),
                 YowLoggerLayer,
                 YowCoderLayer,
