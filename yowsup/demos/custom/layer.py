@@ -2,7 +2,7 @@ from yowsup.layers.interface  import YowInterfaceLayer, ProtocolEntityCallback
 import pnr_worker
 import availability_worker
 
-class RailwayLayer(YowInterfaceLayer):
+class CustomLayer(YowInterfaceLayer):
 
     @ProtocolEntityCallback("message")
     def onMessage(self, messageProtocolEntity):
